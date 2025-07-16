@@ -2,20 +2,32 @@
   "name": "vite-plugin-component-fordebug-tagger",
   "version": "1.0.0",
   "description": "Automatically inject displayName and render logs into React components during development.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
     }
   },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:esm && npm run build:cjs && npm run bundle",
+    "build:esm": "tsc --project tsconfig.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "bundle": "cpy dist/esm/index.js dist/ && cpy dist/cjs/index.js dist/ --rename=index.cjs && cpy dist/esm/index.d.ts dist/ && rimraf dist/esm dist/cjs",
+    "dev": "vite",
     "prepare": "npm run build",
     "release": "npm version patch && git push && git push --tags",
     "release:minor": "npm version minor && git push && git push --tags",
-    "release:major": "npm version major && git push && git push --tags"
+    "release:major": "npm version major && git push && git push --tags",
+    "clean": "rm -rf dist dist-cjs dist-esm"
   },
   "keywords": [
     "vite",
@@ -35,6 +47,8 @@
     "@babel/types": "^7.23.0",
     "@types/babel__generator": "^7.27.0",
     "@types/babel__traverse": "^7.20.7",
+    "cpy-cli": "^5.0.0",
+    "rimraf": "^6.0.1",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
