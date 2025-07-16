@@ -1,0 +1,30 @@
+# Node
+node_modules/
+dist/
+*.log
+npm-debug.log*
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Build output
+*.tsbuildinfo
+
+# Vite plugin dev cache
+.vite/
+
+# VSCode or IDE
+.vscode/
+.idea/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# GitHub workflows temp
+.github/workflows/*.tmp
+
+# Mac/Linux/Windows
+.DS_Store
+Thumbs.db
