@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-component-fordebug-tagger",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Automatically inject displayName and render logs into React components during development.",
   "type": "module",
   "main": "./dist/index.cjs",
